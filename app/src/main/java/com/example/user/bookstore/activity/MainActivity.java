@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 
@@ -26,6 +27,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private List<Fragment> mFragmentList;
     private int mCurrentPosition;
 
+    private long firstBackTime;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +37,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         initData();
         // 2.初始化View
         initView();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+            long currentTimeMillis = System.currentTimeMillis();
+            if (currentTimeMillis - firstBackTime <= 1000) {
+                finishAll();
+            } else {
+                toast("再次点击退出应用");
+                firstBackTime = currentTimeMillis;
+            }
+        }
+        return true;
     }
 
     /**

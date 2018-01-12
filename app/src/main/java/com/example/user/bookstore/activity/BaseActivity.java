@@ -3,6 +3,7 @@ package com.example.user.bookstore.activity;
 import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.user.bookstore.R;
 
@@ -31,5 +32,9 @@ public class BaseActivity extends AppCompatActivity {
             mActivities.remove(i);
             finish();
         }
+    }
+
+    public void toast(String text) {
+        Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
     }
 }

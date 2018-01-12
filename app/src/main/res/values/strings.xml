@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BookStore</string>
+    <string name="app_name">图书商城</string>
     <string name="tab_home">主页</string>
     <string name="tab_discover">发现</string>
     <string name="tab_personal">我的</string>
